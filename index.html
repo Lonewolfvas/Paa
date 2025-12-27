@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tap Surprise 🎉</title>
+
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Poppins", Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background: linear-gradient(135deg,#ffb6f9,#ffd1e6,#fff3d1);
+    background-size: 300% 300%;
+    animation: bgMove 10s ease infinite;
+  }
+
+  @keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+  .card{
+    background:#fff;
+    padding:32px 28px;
+    border-radius:22px;
+    box-shadow:0 18px 35px rgba(0,0,0,.12);
+    text-align:center;
+    max-width:380px;
+    width:90%;
+  }
+
+  .title{
+    font-size:22px;
+    margin-bottom:18px;
+  }
+
+  button{
+    padding:12px 26px;
+    font-size:16px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#ff4fa3;
+    color:#fff;
+    transition: transform .15s, box-shadow .15s;
+  }
+
+  button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 18px rgba(0,0,0,.15);
+  }
+
+  /* Popup (modal) */
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity .25s ease;
+  }
+
+  .overlay.show{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .popup{
+    background:#ffffff;
+    width:92%;
+    max-width:340px;
+    border-radius:20px;
+    padding:26px 22px;
+    text-align:center;
+    transform:scale(.85);
+    transition: transform .25s ease;
+  }
+
+  .overlay.show .popup{
+    transform:scale(1);
+  }
+
+  .popup h3{
+    margin:0 0 10px;
+    color:#ff4fa3;
+  }
+
+  .popup p{
+    font-size:15px;
+    margin-bottom:18px;
+  }
+
+  .close-btn{
+    background:#ffd23f;
+    color:#333;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2 class="title">Tap for a surprise 👇</h2>
+  <button id="tapBtn">Tap Me</button>
+</div>
+
+<!-- Popup -->
+<div class="overlay" id="popupOverlay">
+  <div class="popup">
+    <h3>Sry paah!! </h3>
+    <p>
+
+U know me,huh!! I forgets everything🙂🚶🏻‍♀️ 
+By the way belated happiessstttt b'dayyyyy dearrrr 🥹🫂<br/>Wishing you lots of love and smiles!</p>
+    <button class="close-btn" id="closePopup">Close</button>
+  </div>
+</div>
+
+<script>
+  const tapBtn = document.getElementById("tapBtn");
+  const popupOverlay = document.getElementById("popupOverlay");
+  const closePopup = document.getElementById("closePopup");
+
+  tapBtn.addEventListener("click", () => {
+    popupOverlay.classList.add("show");
+  });
+
+  closePopup.addEventListener("click", () => {
+    popupOverlay.classList.remove("show");
+  });
+
+  // Allow closing when clicking outside popup
+  popupOverlay.addEventListener("click", (e) => {
+    if (e.target === popupOverlay) popupOverlay.classList.remove("show");
+  });
+</script>
+
+</body>
+</html>
